@@ -20,9 +20,9 @@ timezone          : the iana timezone id (see file timeZone.txt) varchar(40)
 modification date : date of last modification in yyyy-MM-dd format
 """
 
-f_out = open('cities50000.csv', 'w')
+f_out = open('cities50000.tsv', 'w')
 with open('cities15000.txt', 'r') as f_in:
-    f_out.write('city,country_code\n')
+    f_out.write('city\tcountry_code\n')
     for line in f_in:
         l = line.rstrip().split('\t')
         geonameid, name, asciiname, alternatenames = l[0:4]
@@ -33,6 +33,6 @@ with open('cities15000.txt', 'r') as f_in:
         population = int(population)
 
         if population > 50000:
-            f_out.write(name + ',' + countrycode + '\n')
+            f_out.write(name + '\t' + countrycode + '\n')
 
 f_out.close()
